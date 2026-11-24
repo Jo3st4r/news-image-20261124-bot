@@ -137,7 +137,7 @@ def main():
             yy += 18
 
     # ---- Sport strip ----------------------------------------------
-    d.line([(mx, 912), (W - mx, 912)], fill=INK, width=2)
+    d.line([(mx, 906), (W - mx, 906)], fill=INK, width=2)
     sport = [
         ("SPORT  •  TENNIS", "Alcaraz wins his first ATP Finals",
          "Beats world No. 1 Zverev 6\u20132, 7\u20136(7) in Turin."),
@@ -147,15 +147,18 @@ def main():
     half = (W - 2 * mx - gap) // 2
     for i, (tag, head, deck) in enumerate(sport):
         x = mx + i * (half + gap)
-        y = 926
+        y = 918
         d.text((x, y), tag, font=font(SANS_B, 13), fill=NAVY)
         d.text((x, y + 22), head, font=font(SERIF_B, 20), fill=INK)
         d.text((x, y + 48), deck, font=font(SANS, 14), fill=GREY)
 
-    # ---- Footer ----------------------------------------------------
-    d.line([(mx, 994), (W - mx, 994)], fill=RULE, width=1)
-    foot = "Sources: Reuters, AP, CNN, Oxfam \u2014 24 November 2026"
-    d.text((mx, 1002), foot, font=font(SANS, 12), fill=GREY)
+    # ---- Sources footer strip --------------------------------------
+    # Two-line credit strip: reporting sources, then the edition line.
+    d.line([(mx, 986), (W - mx, 986)], fill=RULE, width=1)
+    sources = "SOURCES:  Reuters  \u00b7  BBC  \u00b7  AP  \u00b7  AFP  \u00b7  The Guardian"
+    d.text((mx, 992), sources, font=font(SANS_B, 12), fill=INK)
+    times = "All times UTC  \u00b7  Tuesday 24 November 2026"
+    d.text((mx, 1008), times, font=font(SANS, 11), fill=GREY)
 
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "poster.png")
     img.save(out, "PNG", optimize=True)
